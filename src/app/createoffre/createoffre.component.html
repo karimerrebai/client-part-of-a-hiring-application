@@ -1,0 +1,109 @@
+<div class="box">
+  <div class="box-header" style="margin-top: 100px">
+    <h4>Create an Offre</h4>
+  </div>
+  <div class="box-body">
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="col-sm-4">
+          <label>Job Title</label>
+          <input type="text" class="form-control" formControlName="jobtitle" />
+        </div>
+
+        <div class="col-sm-4">
+          <label> Description</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="col-sm-4 m-clear">
+          <label>Speciality</label>
+          <select
+            formControlName="speciality"
+            class="wide form-control"
+            style="display: none"
+          ></select>
+          <div class="nice-select wide form-control" tabindex="0">
+            <span class="current"></span>
+            <ul class="list">
+              <li class="option" *ngFor="let s of specialities" [value]="s._id">
+                {{ s.name }}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <label> Requirements</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="requirements"
+          />
+        </div>
+
+        <div class="col-sm-4 m-clear">
+          <label>Roles</label>
+          <input type="text" class="form-control" formControlName="roles" />
+        </div>
+
+        <div class="col-sm-4 m-clear">
+          <label>Responsibilities</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="responsibilities"
+          />
+        </div>
+        <div class="col-sm-4 m-clear">
+          <label>Location</label>
+          <select
+            formControlName="place"
+            class="wide form-control"
+            style="display: none"
+          ></select>
+          <div class="nice-select wide form-control" tabindex="0">
+            <span class="current"></span>
+            <ul class="list">
+              <li class="option" *ngFor="let s of places" [value]="s._id">
+                {{ s.name }}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-sm-4 m-clear">
+          <label>Time type</label>
+          <input type="text" class="form-control" formControlName="timetype" />
+        </div>
+        <div class="col-sm-4 m-clear">
+          <label>Salary</label>
+          <input type="text" class="form-control" formControlName="salary" />
+        </div>
+
+        <div class="col-sm-4 m-clear">
+          <label>Contract</label>
+          <select
+            formControlName="contract"
+            class="wide form-control"
+            style="display: none"
+          ></select>
+          <div class="nice-select wide form-control" tabindex="0">
+            <span class="current"></span>
+            <ul class="list">
+              <li class="option" *ngFor="let s of contracts" [value]="s._id">
+                {{ s.name }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-m theme-btn" (click)="createoffre()">
+        Submit &amp; Exit
+      </button>
+    </form>
+  </div>
+</div>

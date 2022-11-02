@@ -1,0 +1,248 @@
+<section class="gray">
+  <div class="containerr">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-8 col-sm-12">
+        <div class="detail-wrapper">
+          <div class="detail-wrapper-body">
+            <div class="job-title-bar">
+              <h3>
+                {{ offre.jobtitle | titlecase }}
+                <span class="mrg-l-5 job-tag bg-success-light"
+                  >{{ offre.timetype | uppercase }}
+                </span>
+              </h3>
+              <div>
+                <p class="mrg-bot-0">
+                  <i class="ti-location-pin mrg-r-5"></i>
+                  {{ offre.place.name }}
+                </p>
+
+                <p><strong>Roles</strong> : {{ offre.roles }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-wrapper">
+          <div class="detail-wrapper-header">
+            <h4>Overview</h4>
+          </div>
+          <div class="detail-wrapper-body">
+            <p>
+              {{ offre.description }}
+            </p>
+          </div>
+        </div>
+
+        <div class="detail-wrapper">
+          <div class="detail-wrapper-header">
+            <h4>Responsibilities</h4>
+          </div>
+          <div class="detail-wrapper-body">
+            <ul class="detail-list">
+              <li>
+                {{ offre.responsibilities }}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="detail-wrapper">
+          <div class="detail-wrapper-header">
+            <h4>Requirements</h4>
+          </div>
+          <div class="detail-wrapper-body">
+            <ul class="detail-list">
+              <li>
+                {{ offre.requirements }}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="comments">
+          <div class="comments-title">
+            <h4>Comments ({{ offre.comments.length }})</h4>
+          </div>
+
+          <!-- Single Comment -->
+          <div class="single-comment" *ngFor="let i of offre.comments">
+            <div class="img-holder">
+              <img
+                src="http://localhost:8080/getfile/{{ i.candidate.picture }}"
+                class="img-responsive"
+                alt=""
+              />
+            </div>
+            <div class="text-holder">
+              <div class="top">
+                <div class="name pull-left">
+                  <h4>{{ i.candidate.fullname | titlecase }}</h4>
+                </div>
+                <div class="rating pull-right">
+                  <a (click)="deleteComment(i._id)">
+                    <span class="glyphicon glyphicon-trash"></span
+                  ></a>
+                </div>
+              </div>
+
+              <div class="text">
+                <p>
+                  {{ i.text }}
+                </p>
+              </div>
+
+              <span class="small">{{ i.date | date: "short" }} </span>
+            </div>
+          </div>
+
+          <!-- Single Comment -->
+        </div>
+
+        <div class="container mt-5">
+          <div>
+            <form [formGroup]="form">
+              <div class="col-md-8">
+                <div
+                  class="d-flex comment-section"
+                  *ngIf="userconnect.role == 'Candidate'"
+                >
+                  <!--display fixing-->
+
+                  <div class="bg-white">
+                    <div class="d-flex flex-row fs-12"></div>
+                  </div>
+                  <div class="bg-light p-2">
+                    <div class="d-flex flex-row align-items-start">
+                      <img
+                        src="http://localhost:8080/getfile/{{
+                          userconnect.picture
+                        }}"
+                        width="40"
+                      />
+                      <textarea
+                        class="form-group"
+                        class="form-control ml-1 shadow-none textarea"
+                        formControlName="text"
+                      ></textarea>
+                    </div>
+
+                    <div class="mt-2 text-right">
+                      <button
+                        class="btn btn-m theme-btn full-width mrg-bot-10"
+                        type="button"
+                        (click)="addCOmment()"
+                      >
+                        Post comment
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-12">
+        <div class="sidebar">
+          <!-- Start: Opening hour -->
+          <div class="widget-boxed lg">
+            <div
+              class="widget-boxed-body"
+              *ngIf="userconnect.role == 'Candidate'; else a"
+            >
+              <a
+                class="btn btn-m theme-btn full-width mrg-bot-10"
+                [routerLink]="['/apply', offre._id]"
+               
+                ><i class="fa fa-paper-plane"></i>Apply For Job</a
+              >
+              <a href="#" class="btn btn-m light-gray-btn full-width"
+                ><i class="fa fa-linkedin"></i>Apply with Linkedin</a
+              >
+            </div>
+            <ng-template #a>
+              <a class="btn btn-m theme-btn full-width mrg-bot-10">
+                <i class="fa fa-paper-plane">
+                  Only connected candidates can apply
+                </i>
+              </a>
+            </ng-template>
+          </div>
+          <!-- End: Opening hour -->
+
+          <!-- Start: Job Overview -->
+          <div class="widget-boxed">
+            <div class="widget-boxed-header">
+              <h4><i class="ti-mobile padd-r-10"></i> Contact</h4>
+            </div>
+            <div class="widget-boxed-body">
+              <div class="side-list no-border">
+                <ul>
+                  <li>
+                    <i class="ti-mobile padd-r-10"></i>
+                    {{ offre.company.phone }}
+                  </li>
+                  <li>
+                    <i class="ti-email padd-r-10"></i> {{ offre.company.email }}
+                  </li>
+                  <li>
+                    <i class="ti-location-pin padd-r-10"></i>
+                    {{ offre.company.adress }}
+                  </li>
+                </ul>
+                <h5>Share Job</h5>
+                <ul class="side-list-inline no-border social-side">
+                  <li>
+                    <a href="#"><i class="fa fa-facebook theme-cl"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-google-plus theme-cl"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-twitter theme-cl"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-linkedin theme-cl"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-pinterest theme-cl"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- End: Job Overview -->
+
+          <!-- Start: Opening hour -->
+          <div class="widget-boxed">
+            <div class="widget-boxed-header">
+              <h4><i class="ti-time padd-r-10"></i>Opening Hours</h4>
+            </div>
+            <div class="widget-boxed-body">
+              <div class="side-list">
+                <ul>
+                  <li>Monday <span>9 AM - 5 PM</span></li>
+                  <li>Tuesday <span>9 AM - 5 PM</span></li>
+                  <li>Wednesday <span>9 AM - 5 PM</span></li>
+                  <li>Thursday <span>9 AM - 5 PM</span></li>
+                  <li>Friday <span>9 AM - 5 PM</span></li>
+                  <li>Saturday <span>9 AM - 3 PM</span></li>
+                  <li>Sunday <span>Closed</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- End: Opening hour -->
+        </div>
+      </div>
+    </div>
+    <!-- End Row -->
+
+    <!-- row -->
+
+    <!-- End Row -->
+  </div>
+</section>

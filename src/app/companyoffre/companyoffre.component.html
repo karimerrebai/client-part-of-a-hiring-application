@@ -1,0 +1,189 @@
+<div class="job-verticle-list">
+  <div
+    class="vertical-job-card"
+    style="margin-top: 100px; margin-bottom: 100px"
+  >
+    <div class="vertical-job-header">
+      <div class="vrt-job-cmp-logo">
+        <a href="job-detail.html"
+          ><img
+            src="http://localhost:8080/getfile/{{ jobs.company.picture }}"
+            class="img-responsive"
+            alt=""
+        /></a>
+      </div>
+      <h4>
+        <a href="job-detail.html"> {{ jobs.company.fullname | uppercase }} </a>
+      </h4>
+      <span class="com-tagline"> {{ jobs.speciality.name }} </span>
+    </div>
+    <div class="vertical-job-body">
+      <div class="row">
+        <div class="col-md-9 col-sm-8">
+          <ul class="can-skils">
+            <li>
+              <strong>Job Title : </strong> {{ jobs.jobtitle | titlecase }}
+            </li>
+            <li><strong>Roles: </strong> {{ jobs.roles | titlecase }}</li>
+            <li>
+              <strong>Responsibilities: </strong> {{ jobs.responsibilities }}
+            </li>
+            <li><strong>Requirements: </strong> {{ jobs.requirements }}</li>
+
+            <li>
+              <strong>Time type: </strong>
+
+              <span class="skill-tag"> {{ jobs.timetype }} </span>
+            </li>
+            <li><strong>Salary: </strong> {{ jobs.salary }} $</li>
+            <li>
+              <strong>Location: </strong> {{ jobs.place.name | titlecase }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-12">
+  <h4 class="mrg-bot-20">Candidacies ({{ jobs.candidancies.length}}) :</h4>
+</div>
+<!--candidacies-->
+
+<div
+  class="job-verticle-list"
+  style="margin-bottom: 100px"
+  *ngFor="let i of jobs.candidancies"
+>
+  <span class="urgent">Urgent</span>
+  <div class="vertical-job-card">
+    <div class="vertical-job-header">
+      <div class="vrt-job-cmp-logo">
+        <a href="job-detail.html"
+          ><img
+            src="http://localhost:8080/getfile/{{ i.candidate.picture }}"
+            class="img-responsive"
+            alt=""
+        /></a>
+      </div>
+      <h4>
+        <a href="job-detail.html"> {{ i.candidate.fullname | titlecase }} </a>
+      </h4>
+      <span class="com-tagline"> {{ i.candidate.email }} </span>
+    </div>
+    <div class="vertical-job-body">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <ul class="can-skils">
+            <li>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-envelope"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"
+                />
+              </svg>
+              {{ i.coverLetter }}
+            </li>
+            <li>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-file-person"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"
+                />
+                <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+              </svg>
+              <a href="http://localhost:8080/getfile/{{ i.cv }}">
+                Check resume</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-4">
+      <div class="vrt-job-act">
+        <a
+          data-toggle="modal"
+          data-target="#apply-job"
+          class="btn-job theme-btn job-apply"
+          (click)="confirmCandidacy(i._id)"
+        >
+          Confirm
+        </a>
+        &nbsp;
+        <a
+          title=""
+          class="btn-job light-gray-btn"
+          (click)="rejectCandidacy(i._id)"
+        >
+          Reject</a
+        >
+      </div>
+    </div>
+    <div class="job-bottom-tags flex-middle">
+      <div class="ali-right">
+        <div class="wrapper-shortlist">
+          <a
+            href="javascript:void(0);"
+            class="btn-action-job btn-add-job-shortlist"
+            data-job_id="856"
+            data-nonce="678580d52a"
+            ><i class="fa fa-heart"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comments">
+  <div class="comments-title">
+    <h4>Comments ({{ jobs.comments.length }}) :</h4>
+  </div>
+
+  <!-- Single Comment -->
+  <div class="single-comment" *ngFor="let i of jobs.comments">
+    <div class="img-holder">
+      <img
+        src="http://localhost:8080/getfile/{{ i.candidate.picture }}"
+        class="img-responsive"
+        alt=""
+      />
+    </div>
+    <div class="text-holder">
+      <div class="top">
+        <div class="name pull-left">
+          <h4>{{ i.candidate.fullname | titlecase }}</h4>
+        </div>
+        <div class="rating pull-right">
+          <a>
+            <span
+              (click)="deleteComment(i._id)"
+              class="glyphicon glyphicon-trash"
+            ></span
+          ></a>
+        </div>
+      </div>
+
+      <div class="text">
+        <p>
+          {{ i.text }}
+        </p>
+      </div>
+
+      <span class="small">Dec 30 2017</span>
+    </div>
+  </div>
+</div>

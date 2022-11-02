@@ -1,0 +1,269 @@
+<div class="a" *ngIf="userconnect.role == 'Company'; else candi">
+  <section class="gray">
+    <div class="container">
+      <div class="col-md-3 col-sm-3">
+        <div class="emp-pic">
+          <img
+            class="img-responsive img-circle width-220"
+            src="http://localhost:8080/getfile/{{ userconnect.picture }}"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-4">
+        <div class="emp-des">
+          <h3>{{ userconnect.fullname | uppercase }}</h3>
+          <span class="theme-cl">Account Manager</span>
+          <p>
+            {{ userconnect.adress }} ,<br />
+            {{ userconnect.email | lowercase }}
+          </p>
+        </div>
+        <div class="emp-bt">
+          <a routerLink="/createoffre" class="btn theme-btn"
+            ><i class="ti-plus"></i> Add new job</a
+          >
+        </div>
+      </div>
+
+      <div class="col-md-5 col-sm-5">
+        <div class="emp-detail">
+          <ul>
+            <li>
+              <span class="cl-danger">{{ company.offres.length }} </span>Jobs
+            </li>
+            <li>
+              <span class="cl-success"> 12 </span>
+              Candidacies
+            </li>
+            <li><span class="cl-primary">0</span>Followers</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="padd-top-20 gray">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="short">
+            <div class="custom dropdown">
+              <button
+                class="btn light-btn dropdown-toggle"
+                type="button"
+                id="dropdownMenu1"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="true"
+              >
+                All Jobs
+                <span class="caret caret-search"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="#">Free Jobs</a></li>
+                <li><a href="#">Featured Jobs</a></li>
+                <li><a href="#">Deactive Jobs</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Single Job -->
+
+        <!-- Single Job -->
+
+        <!-- Single Job -->
+
+        <!-- Single Job -->
+
+        <!-- Single Job -->
+
+        <!-- Single Job -->
+        <div class="col-md-3 col-sm-6" *ngFor="let i of company.offres">
+          <div class="grid-job-widget">
+            <span class="job-type part-type"> {{ i.timetype }} </span>
+
+            <div class="job-featured"></div>
+
+            <div class="u-content">
+              <div class="avatar box-80">
+                <a href="employer-detail.html">
+                  <img
+                    class="img-responsive"
+                    src="http://localhost:8080/getfile/{{
+                      userconnect.picture
+                    }}"
+                    alt=""
+                  />
+                </a>
+              </div>
+              <h5>
+                <a [routerLink]="['/companyOffre', i._id]">{{ i.jobtitle }} </a>
+              </h5>
+              <p class="text-muted">{{ i.roles }}</p>
+            </div>
+
+            <div class="job-type-grid">
+              <a
+                href="job-detail.html"
+                class="btn job-browse-btn btn-radius br-light"
+              >
+                check now</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Single Job -->
+
+        <div class="row">
+          <div class="col-md-12 mrg-top-30">
+            <div class="text-center">
+              <button type="submit" class="btn btn-m theme-btn">
+                View More Jobs
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<ng-template #candi>
+  <section class="gray" style="margin-top: 100px">
+    <div class="container">
+      <div class="col-md-3 col-sm-3">
+        <div class="emp-pic">
+          <img
+            class="img-responsive img-circle width-220"
+            src="http://localhost:8080/getfile/{{ candidate.picture }}"
+            alt=""
+          />
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-4">
+        <div class="emp-des">
+          <h3>{{ candidate.fullname | titlecase }}</h3>
+          <span class="theme-cl">
+            <i class="ti-mobile padd-r-10"></i>{{ candidate.phone }}
+          </span>
+          <p>
+            <i class="ti-location-pin padd-r-10"></i> {{ candidate.city }} ,{{
+              candidate.adress
+            }}
+            <br />
+            <i class="ti-email padd-r-10"></i> {{ candidate.email | lowercase }}
+          </p>
+        </div>
+        <div class="emp-bt">
+          <a routerLink="/edit" class="btn theme-btn">
+            <i class="fa fa-edit"></i> Edit profile</a
+          >
+        </div>
+      </div>
+
+      <div class="col-md-5 col-sm-5">
+        <div class="emp-detail">
+          <ul>
+            <li>
+              <span class="cl-danger"
+                >{{ candidate.candidancies.length }}
+              </span>
+              Candidacies
+            </li>
+            <li>
+              <span class="cl-success">{{ candidate.comments.length }} </span
+              >Comments
+            </li>
+            <li><span class="cl-primary">0</span>Followers</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gray">
+    <div class="container">
+      <div class="table-responsive">
+        <table class="table table-lg table-hover">
+          <thead>
+            <tr>
+              <th>Offre</th>
+              <th>Cover letter</th>
+              <th>Status</th>
+              <th>Posted</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let i of candidate.candidancies">
+              <td>
+                <a href="job-detail.html">
+                  <img
+                    src="assets/img/c-5.png"
+                    class="avatar-lg"
+                    alt="Avatar"
+                  />
+                  {{ i.offre.jobtitle | titlecase }}
+                  <span class="mng-jb">
+                    {{ i.offre.timetype | uppercase }}</span
+                  >
+                </a>
+              </td>
+              <td>
+                <a [routerLink]="['/detailcandidacy', i._id]">
+                  check candidacy</a
+                >
+              </td>
+              <td *ngIf="i.isconfirmed == true" style="color: green">
+                Accepted
+              </td>
+              <td *ngIf="i.isconfirmed == null" style="color: blue">In wait</td>
+              <td *ngIf="i.isconfirmed == false" style="color: red">
+                Rejected
+              </td>
+
+              <td>
+                <i class="ti-credit-card"></i> {{ i.date | date: "short" }}
+              </td>
+              <td>
+                <a (click)="deleteCandidacy(i._id)" class="cl-danger mrg-5"
+                  ><i class="fa fa-trash-o"></i
+                ></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- flexbox -->
+        <div class="flexbox padd-10">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">«</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item active">
+              <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">»</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.flexbox -->
+      </div>
+    </div>
+  </section>
+</ng-template>
+

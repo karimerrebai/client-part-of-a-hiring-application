@@ -1,0 +1,32 @@
+<form style="margin-top: 90px; margin-left: 50px" [formGroup]="form">
+  <div class="form-group">
+    <label>Upload CV</label>
+    <div class="custom-file-upload">
+      <input
+        (change)="handelFile($event)"
+        form
+        type="file"
+        id="file"
+        name="myfiles[]"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <textarea
+      class="form-control height-120"
+      placeholder="Cover Letter"
+      formControlName="coverLetter"
+    ></textarea>
+  </div>
+
+  <div class="form-group text-center" >
+    <button 
+      type="button"
+      class="btn theme-btn btn-m"
+      (click)="createCandidacy()"
+    >
+      Save &amp; Apply
+    </button>
+  </div>
+</form>

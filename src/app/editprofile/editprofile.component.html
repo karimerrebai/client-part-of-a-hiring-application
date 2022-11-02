@@ -1,0 +1,71 @@
+<div class="row" style="margin-top: 50px; margin-left: 100px">
+  <!-- col-md-6 -->
+  <div class="col-md-6 col-12">
+    <div class="form-group">
+      <div class="contact-img">
+        <img
+          src="http://localhost:8080/getfile/{{ candidate.picture }}"
+          class="img-circle img-responsive"
+          alt=""
+        />
+      </div>
+    </div>
+
+    <form [formGroup]="form">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label> Full name</label>
+          <input
+            name="fullname"
+            class="form-control"
+            placeholder="full name"
+            formControlName="fullname"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Phone</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="phone"
+            formControlName="phone"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>City</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="city"
+            formControlName="city"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Adress</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="adress"
+            formControlName="adress"
+          />
+        </div>
+      </div>
+      <div class="col-md-12 col-12 padd-top-20 text-center">
+        <a (click)="editprofile()" class="btn btn-m theme-btn"
+          >Update &amp; Exit</a
+        >
+      </div>
+    </form>
+  </div>
+
+  <!-- col-md-6 -->
+</div>
