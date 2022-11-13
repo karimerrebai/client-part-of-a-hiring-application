@@ -5,6 +5,7 @@
 /tmp
 /out-tsc
 /bazel-out
+#this would be my changes bla bla and this time should be at the first time
 
 # Node
 /node_modules
